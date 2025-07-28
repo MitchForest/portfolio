@@ -22,10 +22,10 @@ export function VideoModal() {
       }
     }
 
-    document.addEventListener('openVideoModal' as any, handleOpenModal)
+    document.addEventListener('openVideoModal', handleOpenModal as EventListener)
     
     return () => {
-      document.removeEventListener('openVideoModal' as any, handleOpenModal)
+      document.removeEventListener('openVideoModal', handleOpenModal as EventListener)
     }
   }, [])
 

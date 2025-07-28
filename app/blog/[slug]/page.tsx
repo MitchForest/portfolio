@@ -1,8 +1,9 @@
 import { blogPosts } from '@/lib/data'
 import { notFound } from 'next/navigation'
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
-  const post = blogPosts.find(p => p.slug === params.slug)
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = blogPosts.find(p => p.slug === slug)
   
   if (!post || !post.published) {
     notFound()

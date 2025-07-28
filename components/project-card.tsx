@@ -22,7 +22,7 @@ interface ProjectCardProps {
   isFeatured?: boolean
 }
 
-export function ProjectCard({ project, onPlayClick, isFeatured }: ProjectCardProps) {
+export function ProjectCard({ project, isFeatured }: ProjectCardProps) {
   const [isHovering, setIsHovering] = useState(false)
   const [videoLoaded, setVideoLoaded] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)

@@ -39,7 +39,7 @@ export function InProgress() {
                 Devys
               </h3>
               <p className="text-lg text-muted-foreground mb-6">
-                Currently I'm working on a side project called Devys, a Claude Code native IDE desktop and mobile app. 
+                Currently I&apos;m working on a side project called Devys, a Claude Code native IDE desktop and mobile app. 
                 The main goal of this is quality of life because I spend 10+ hours a day in Cursor and Terminal. 
                 My goal is to create a beautiful UI/UX for multi-agent coding workflows powered by Claude Code.
               </p>

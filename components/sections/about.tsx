@@ -48,11 +48,11 @@ export function About() {
               <div className="space-y-4">
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   I was born in Miami and moved to Jensen Beach when I was three. I love Florida and 
-                  spend my free time fishing, diving, boating, surfing—you name it, as long as it's in the water.
+                  spend my free time fishing, diving, boating, surfing—you name it, as long as it&apos;s in the water.
                 </p>
 
                 <p className="text-sm leading-relaxed text-muted-foreground">
-                  I was my school's valedictorian and earned about two years of college credits from APs.
+                  I was my school&apos;s valedictorian and earned about two years of college credits from APs.
                 </p>
 
                 <p className="text-sm leading-relaxed text-muted-foreground">
@@ -130,13 +130,13 @@ export function About() {
                 </p>
 
                 <p className="text-sm leading-relaxed text-muted-foreground">
-                  Since then, I've mostly focused on contracting and investing—leading product 
+                  Since then, I&apos;ve mostly focused on contracting and investing—leading product 
                   for a few startups and investing in commercial real estate, crypto, and 
                   early‑stage ventures.
                 </p>
 
                 <p className="text-sm leading-relaxed text-muted-foreground">
-                  I'm now at{' '}
+                  I&apos;m now at{' '}
                   <a 
                     href="https://www.gauntletai.com/" 
                     target="_blank" 

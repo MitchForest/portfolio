@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
 import Image from 'next/image'
-import { personalInfo } from '@/lib/data'
 
 export function Hero() {
   const scrollToNext = () => {
@@ -36,7 +35,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <span>Hi, I'm</span>
+            <span>Hi, I&apos;m</span>
             <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-4 border-accent-orange inline-block">
               <Image
                 src="https://cipkxafdqzscmbuy.public.blob.vercel-storage.com/Headshot-min.png"

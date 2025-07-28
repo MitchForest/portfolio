@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { motion, AnimatePresence } from 'framer-motion'
-import { X, Send, Sparkles } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Send, Sparkles } from 'lucide-react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -63,7 +63,7 @@ export function ContactModal() {
       
       reset()
       setIsOpen(false)
-    } catch (error) {
+    } catch {
       toast.error('Failed to send message', {
         description: 'Please try again or email me directly.'
       })
@@ -76,9 +76,9 @@ export function ContactModal() {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle className="text-2xl">Let's Connect</DialogTitle>
+          <DialogTitle className="text-2xl">Let&apos;s Connect</DialogTitle>
           <p className="text-muted-foreground mt-2">
-            I'm always excited to discuss AI, education, and ambitious projects.
+            I&apos;m always excited to discuss AI, education, and ambitious projects.
           </p>
         </DialogHeader>
 

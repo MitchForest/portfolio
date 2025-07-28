@@ -32,8 +32,8 @@ export function GetInTouch() {
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Get In Touch</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                I'm always excited to discuss AI, education, startups, investing, or any ambitious projects. 
-                Whether you have a question, want to collaborate, or just want to say hi, don't hesitate to get in touch, I'd love to hear from you.
+                I&apos;m always excited to discuss AI, education, startups, investing, or any ambitious projects. 
+                Whether you have a question, want to collaborate, or just want to say hi, don&apos;t hesitate to get in touch, I&apos;d love to hear from you.
               </p>
             </div>
 
