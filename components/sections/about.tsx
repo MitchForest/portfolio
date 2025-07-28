@@ -32,6 +32,8 @@ export function About() {
                 width={600}
                 height={600}
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 600px"
+                priority
               />
             </div>
           </motion.div>

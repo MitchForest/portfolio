@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useRef } from 'react'
-import { Play, Github, ExternalLink, ArrowRight } from 'lucide-react'
+import { useState, useRef, useEffect } from 'react'
+import { Play, Github, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -24,23 +24,26 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, isFeatured }: ProjectCardProps) {
   const [isHovering, setIsHovering] = useState(false)
-  const [videoLoaded, setVideoLoaded] = useState(false)
+  const [videoReady, setVideoReady] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    // Load video metadata to show first frame
+    if (project.video && videoRef.current) {
+      videoRef.current.load()
+    }
+  }, [project.video])
 
   const handleMouseEnter = () => {
     setIsHovering(true)
-    if (!videoLoaded && project.video && videoRef.current) {
-      videoRef.current.src = project.video
-      setVideoLoaded(true)
-    }
-    if (videoRef.current && project.video) {
+    if (videoRef.current && videoReady) {
       videoRef.current.play()
     }
   }
 
   const handleMouseLeave = () => {
     setIsHovering(false)
-    if (videoRef.current && project.video) {
+    if (videoRef.current) {
       videoRef.current.pause()
       videoRef.current.currentTime = 0
     }
@@ -48,6 +51,10 @@ export function ProjectCard({ project, isFeatured }: ProjectCardProps) {
 
   const handleClick = () => {
     document.dispatchEvent(new CustomEvent('openVideoModal', { detail: { projectId: project.id } }))
+  }
+
+  const handleVideoLoadedData = () => {
+    setVideoReady(true)
   }
 
   return (
@@ -58,34 +65,38 @@ export function ProjectCard({ project, isFeatured }: ProjectCardProps) {
       onClick={handleClick}
     >
       <div className="aspect-video relative overflow-hidden bg-muted">
-        {project.video && (
-          <video
-            ref={videoRef}
-            className="absolute inset-0 w-full h-full object-cover"
-            muted
-            loop
-            playsInline
-            preload="none"
-          />
-        )}
-        {project.image && (
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className={`object-cover transition-opacity duration-300 ${
-              isHovering && project.video ? 'opacity-0' : 'opacity-100'
-            }`}
-          />
-        )}
-        {project.video && (
-          <div className={`absolute inset-0 bg-black/30 flex items-center justify-center transition-opacity duration-300 ${
-            isHovering ? 'opacity-0' : 'opacity-100 group-hover:opacity-100'
-          }`}>
-            <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
-              <Play className="w-6 h-6 text-black ml-0.5" fill="currentColor" />
+        {project.video ? (
+          <>
+            <video
+              ref={videoRef}
+              src={project.video}
+              className="absolute inset-0 w-full h-full object-cover"
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              onLoadedData={handleVideoLoadedData}
+            />
+            {/* Play button overlay */}
+            <div className={`absolute inset-0 bg-black/30 flex items-center justify-center transition-opacity duration-300 pointer-events-none ${
+              isHovering ? 'opacity-0' : 'opacity-100'
+            }`}>
+              <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
+                <Play className="w-6 h-6 text-black ml-0.5" fill="currentColor" />
+              </div>
             </div>
-          </div>
+          </>
+        ) : (
+          // For Settlers/Catan - just show the image
+          project.image && (
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          )
         )}
       </div>
       
@@ -114,6 +125,7 @@ export function ProjectCard({ project, isFeatured }: ProjectCardProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-accent-orange hover:underline font-medium"
+                onClick={(e) => e.stopPropagation()}
               >
                 <Github className="w-5 h-5" />
                 View on GitHub
@@ -126,8 +138,8 @@ export function ProjectCard({ project, isFeatured }: ProjectCardProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-accent-orange hover:underline font-medium"
+                onClick={(e) => e.stopPropagation()}
               >
-                <ExternalLink className="w-5 h-5" />
                 Demo
                 <ArrowRight className="w-4 h-4" />
               </a>
